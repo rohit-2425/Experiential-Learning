@@ -1,0 +1,38 @@
+<html>
+<head>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f1ea; padding: 20px; }
+        .order-container { max-width: 500px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; }
+        .section { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input[type="number"] { width: 50px; }
+        .total-section { font-weight: bold; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+<div class="order-container">
+    <h2>Brew & Bean Café</h2>
+    <form id="coffeeForm">
+        <div class="section">
+            <label>Coffee Type:</label>
+            <select id="coffeeBase">
+                <option value="150">Espresso - ₹150</option>
+                <option value="200">Cappuccino - ₹200</option>
+            </select>
+        </div>
+        <div class="section">
+            <label>Add-ons:</label>
+            <input type="checkbox" name="addons" value="50"> Extra Shot (+₹50)<br>
+            <input type="checkbox" name="addons" value="30"> Syrup (+₹30)
+        </div>
+        <div class="section">
+            <label>Quantity:</label>
+            <input type="number" id="quantity" min="1" value="1">
+        </div>
+        <div class="total-section">Total: ₹<span id="totalPrice">150</span></div>
+    </form>
+</div>
+
+</body>
+</html>
