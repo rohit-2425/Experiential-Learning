@@ -1,0 +1,184 @@
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Brew & Bean Café</title>
+
+
+
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, #d7ccc8, #efebe9);
+  overflow-x: hidden;
+}
+
+/* Floating Stickers */
+.sticker {
+  position: fixed;
+  font-size: 30px;
+  animation: float 6s infinite ease-in-out;
+  opacity: 0.7;
+}
+
+.sticker1 { top: 10%; left: 5%; }
+.sticker2 { top: 70%; right: 10%; }
+.sticker3 { bottom: 10%; left: 15%; }
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 30px 20px 10px;
+}
+
+.hero h1 {
+  font-size: 36px;
+  color: #3e2723;
+}
+
+.hero p {
+  color: #6d4c41;
+}
+
+/* Card */
+.container {
+  max-width: 650px;
+  margin: auto;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.container:hover {
+  transform: scale(1.01);
+}
+
+/* Labels */
+label {
+  font-weight: 500;
+  margin-top: 15px;
+  display: block;
+}
+
+/* Inputs */
+select, input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  margin-top: 5px;
+  background: #f3efec;
+}
+
+/* Addons */
+.addons label {
+  display: block;
+  padding: 10px;
+  border-radius: 10px;
+  background: #f8f5f2;
+  margin: 6px 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.addons label:hover {
+  background: #e0d7d2;
+  transform: translateX(5px);
+}
+
+/* Summary */
+.summary {
+  margin-top: 25px;
+  padding: 20px;
+  background: #fff8f5;
+  border-radius: 15px;
+}
+
+.bill-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 6px 0;
+}
+
+.total {
+  font-size: 22px;
+  font-weight: 600;
+  margin-top: 10px;
+  color: #4e342e;
+}
+
+/* Cute Footer */
+.footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #8d6e63;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Stickers -->
+<div class="sticker sticker1">☕</div>
+<div class="sticker sticker2">✨</div>
+<div class="sticker sticker3">🌸</div>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>☕ Brew & Bean</h1>
+  <p>✨ Build your dream coffee ✨</p>
+</div>
+
+<div class="container">
+
+  <!-- Coffee -->
+  <label>☕ Choose Your Coffee</label>
+  <select>
+    <option>Espresso - ₹150</option>
+    <option>Cappuccino - ₹200</option>
+    <option>Latte - ₹180</option>
+    <option>Mocha - ₹220</option>
+  </select>
+
+  <!-- Add-ons -->
+  <label>🧁 Add Cute Extras</label>
+  <div class="addons">
+    <label><input type="checkbox"> Extra Shot ☕ (+₹20)</label>
+    <label><input type="checkbox"> Whipped Cream 🍦 (+₹30)</label>
+    <label><input type="checkbox"> Caramel Syrup 🍯 (+₹25)</label>
+    <label><input type="checkbox"> Chocolate Drizzle 🍫 (+₹35)</label>
+  </div>
+
+  <!-- Quantity -->
+  <label>🔢 Quantity</label>
+  <input type="number" value="1" min="1">
+
+  <!-- Summary -->
+  <div class="summary">
+    <h3>🧾 Your Order</h3>
+    <div class="bill-item">
+      <span>Order details will appear here</span>
+      <span>₹0</span>
+    </div>
+    <div class="total">💰 Total: ₹0</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Made with 💖 & coffee vibes ☕✨
+</div>
+
+</body>
+</html>
