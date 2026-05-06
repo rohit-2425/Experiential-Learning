@@ -1,0 +1,225 @@
+< html>
+
+<head>
+
+<title>Brew & Bean Café</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, #d7ccc8, #efebe9);
+  overflow-x: hidden;
+}
+
+/* Floating Stickers */
+.sticker {
+  position: fixed;
+  font-size: 30px;
+  animation: float 6s infinite ease-in-out;
+  opacity: 0.7;
+}
+
+.sticker1 { top: 10%; left: 5%; }
+.sticker2 { top: 70%; right: 10%; }
+.sticker3 { bottom: 10%; left: 15%; }
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 30px 20px 10px;
+}
+
+.hero h1 {
+  font-size: 36px;
+  color: #3e2723;
+}
+
+.hero p {
+  color: #6d4c41;
+}
+
+/* Card */
+.container {
+  max-width: 650px;
+  margin: auto;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.container:hover {
+  transform: scale(1.01);
+}
+
+/* Labels */
+label {
+  font-weight: 500;
+  margin-top: 15px;
+  display: block;
+}
+
+/* Inputs */
+select, input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  margin-top: 5px;
+  background: #f3efec;
+}
+
+/* Addons */
+.addons label {
+  display: block;
+  padding: 10px;
+  border-radius: 10px;
+  background: #f8f5f2;
+  margin: 6px 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.addons label:hover {
+  background: #e0d7d2;
+  transform: translateX(5px);
+}
+
+/* Summary */
+.summary {
+  margin-top: 25px;
+  padding: 20px;
+  background: #fff8f5;
+  border-radius: 15px;
+}
+
+.bill-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 6px 0;
+}
+
+.total {
+  font-size: 22px;
+  font-weight: 600;
+  margin-top: 10px;
+  color: #4e342e;
+}
+
+/* Cute Footer */
+.footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #8d6e63;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Stickers -->
+<div class="sticker sticker1">☕</div>
+<div class="sticker sticker2">✨</div>
+<div class="sticker sticker3">🌸</div>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>☕ Brew & Bean</h1>
+  <p>✨ Build your dream coffee ✨</p>
+</div>
+
+<div class="container">
+
+  <!-- Coffee -->
+  <label>☕ Choose Your Coffee</label>
+  <select id="coffee" onchange="updateOrder()">
+    <option value="150">Espresso - ₹150</option>
+    <option value="200">Cappuccino - ₹200</option>
+    <option value="180">Latte - ₹180</option>
+    <option value="220">Mocha - ₹220</option>
+  </select>
+
+  <!-- Add-ons -->
+  <label>🧁 Add Cute Extras</label>
+  <div class="addons">
+    <label><input type="checkbox" value="20" onchange="updateOrder()"> Extra Shot ☕ (+₹20)</label>
+    <label><input type="checkbox" value="30" onchange="updateOrder()"> Whipped Cream 🍦 (+₹30)</label>
+    <label><input type="checkbox" value="25" onchange="updateOrder()"> Caramel Syrup 🍯 (+₹25)</label>
+    <label><input type="checkbox" value="35" onchange="updateOrder()"> Chocolate Drizzle 🍫 (+₹35)</label>
+  </div>
+
+  <!-- Quantity -->
+  <label>🔢 Quantity</label>
+  <input type="number" id="quantity" value="1" min="1" onchange="updateOrder()">
+
+  <!-- Summary -->
+  <div class="summary">
+    <h3>🧾 Your Order</h3>
+    <div id="billDetails"></div>
+    <div class="total">💰 Total: ₹<span id="total">0</span></div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Made with 💖 & coffee vibes ☕✨
+</div>
+
+<script>
+function updateOrder() {
+  let coffeeSelect = document.getElementById("coffee");
+  let coffeeName = coffeeSelect.options[coffeeSelect.selectedIndex].text;
+  let coffeePrice = parseInt(coffeeSelect.value);
+
+  let quantity = parseInt(document.getElementById("quantity").value);
+
+  let addons = document.querySelectorAll(".addons input:checked");
+
+  let billHTML = "";
+  let addonTotal = 0;
+
+  billHTML += `<div class="bill-item">
+                  <span>${coffeeName}</span>
+                  <span>₹${coffeePrice}</span>
+               </div>`;
+
+  addons.forEach(addon => {
+    let text = addon.parentElement.textContent.trim();
+    let price = parseInt(addon.value);
+
+    addonTotal += price;
+
+    billHTML += `<div class="bill-item">
+                    <span>${text}</span>
+                    <span>₹${price}</span>
+                 </div>`;
+  });
+
+  billHTML += `<div class="bill-item">
+                  <span>Quantity</span>
+                  <span>x ${quantity}</span>
+               </div>`;
+
+  let total = (coffeePrice + addonTotal) * quantity;
+
+  document.getElementById("billDetails").innerHTML = billHTML;
+  document.getElementById("total").innerText = total;
+}
+
+updateOrder();
+</script>
+
+</body>
+</html>
